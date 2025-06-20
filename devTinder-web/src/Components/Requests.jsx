@@ -16,7 +16,7 @@ const Requests = () => {
         {},
         { withCredentials: true }
       );
-      dispatch(removerequest(_id))
+      dispatch(removerequest(_id));
       console.log(res);
     } catch (err) {
       console.error(err);
@@ -45,37 +45,39 @@ const Requests = () => {
       <div className="flex justify-center my-10">
         <h1 className="text-bold text-2xl">Requests Received</h1>
       </div>
-      {requests.map((request) => {
-        const { _id, firstName, lastName, age, gender, about, photoURL } =
-          request.fromUserID;
+      <div className="flex flex-wrap  gap-2">
+        {requests.map((request) => {
+          const { _id, firstName, lastName, age, gender, about, photoURL } =
+            request.fromUserID;
 
-        return (
-          <div key={_id} className="card bg-base-300 w-96 shadow-sm mx-4">
-            <figure>
-              <img src={photoURL} alt="photo" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{firstName + " " + lastName}</h2>
-              {about && <p>{about}</p>}
-              {age && gender && <p>{age + " " + gender}</p>}
+          return (
+            <div key={_id} className="card bg-base-300 w-96 shadow-sm mx-4 ">
+              <figure>
+                <img src={photoURL} alt="photo" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{firstName + " " + lastName}</h2>
+                {about && <p>{about}</p>}
+                {age && gender && <p>{age + " " + gender}</p>}
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => reviewrequest("rejected", request._id)}
+                >
+                  Reject
+                </button>
+                <button
+                  className="btn btn-secondary mx-4 mb-2"
+                  onClick={() => reviewrequest("accepted", request._id)}
+                >
+                  Accept
+                </button>
+              </div>
             </div>
-            <div className="flex justify-center">
-              <button
-                className="btn btn-primary"
-                onClick={() => reviewrequest("rejected", request._id)}
-              >
-                Reject
-              </button>
-              <button
-                className="btn btn-secondary mx-4 mb-2"
-                onClick={() => reviewrequest("accepted", request._id)}
-              >
-                Accept
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };

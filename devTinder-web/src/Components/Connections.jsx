@@ -31,23 +31,25 @@ const Connections = () => {
       <div className="flex justify-center my-10">
         <h1 className="text-bold text-2xl">Connections</h1>
       </div>
-      {connections.map((connection) => {
-        const { _id, firstName, lastName, age, gender, about, photoURL } =
-          connection;
+      <div className="flex flex-wrap  gap-2">
+        {connections.map((connection) => {
+          const { _id, firstName, lastName, age, gender, about, photoURL } =
+            connection;
 
-        return (
-          <div key={_id} className="card bg-base-300 w-96 shadow-sm mx-4">
-            <figure>
-              <img src={photoURL} alt="photo" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{firstName + " " + lastName}</h2>
-              {about && <p>{about}</p>}
-              {age && gender && <p>{age + " " + gender}</p>}
+          return (
+            <div key={_id} className="card bg-base-300 w-96 shadow-sm mx-4">
+              <figure>
+                <img src={photoURL} alt="photo" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{firstName + " " + lastName}</h2>
+                {about && <p>{about}</p>}
+                {age && gender && <p>{age + " " + gender}</p>}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };
